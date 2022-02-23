@@ -535,7 +535,7 @@ class Spotify(object):
         tlist = [self._get_id("episode", e) for e in episodes]
         return self._get("episodes/?ids=" + ",".join(tlist), market=market)
 
-    def search(self, q, limit=10, offset=0, type="track", market=None):
+    def search(self, q, limit=10, offset=0, type="track", market=None, locale=None):
         """ searches for an item
 
             Parameters:
@@ -549,9 +549,10 @@ class Spotify(object):
                          pass in a comma separated string; e.g., 'track,album,episode'.
                 - market - An ISO 3166-1 alpha-2 country code or the string
                            from_token.
+                - locale - An ISO 3166-1 alpha-2 country code. Returns response in in the specified localization
         """
         return self._get(
-            "search", q=q, limit=limit, offset=offset, type=type, market=market
+            "search", q=q, limit=limit, offset=offset, type=type, market=market, locale=locale
         )
 
     def search_markets(self, q, limit=10, offset=0, type="track", markets=None, total=None):
